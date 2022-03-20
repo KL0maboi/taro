@@ -196,26 +196,17 @@ var PlayerUiComponent = IgeEntity.extend({
 
 		config.isDismissible = config.isDismissible === undefined ? true : !!(config.isDismissible);
 		
-		swal({
-			title: "Popup!",
-			text: `the game wants you to open ${config.url}`,
-			showConfirmButton: true, showCancelButton: true,
-			type: "warning",
-			confirmButtonText: "Go",
-			cancelButtonText: "Don't Go"
-		}).then(value => {
-			var newWin = window.open(config.url)
+		var newWin = window.open(config.url)
 			
-			if (!newWin || newWin.closed || typeof newWin.closed == 'undefined') {
-				swal({
-					title: 'Please allow Popups',
-					text: 'Your browser is blocking the content modd.io is trying to display',
-					imageWidth: 300,
-					imageUrl: '/assets/images/enable-popup.gif',
-					imageClass: 'rounded border'
-				});
-			}
-		})
+		if (!newWin || newWin.closed || typeof newWin.closed == 'undefined') {
+			swal({
+				title: 'Please allow Popups',
+				text: 'Your browser is blocking the content modd.io is trying to display',
+				imageWidth: 300,
+				imageUrl: '/assets/images/enable-popup.gif',
+				imageClass: 'rounded border'
+			});
+		}
 	},
 	showWebsiteModal: function (config) {
 		var self = this;
